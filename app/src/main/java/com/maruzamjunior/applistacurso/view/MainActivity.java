@@ -14,6 +14,7 @@ import com.maruzamjunior.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;//criação do obejetp pessoa
+    Pessoa outraPessoa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +28,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         pessoa = new Pessoa();//criação da instancia
+        //chamada do metodo set
+        pessoa.setPrimeiroNome("Maruzam");
+        pessoa.setSobreNome("Bueno");
+        pessoa.setCursoDesejado("Java");
+        pessoa.setTelefoneContato("9999999999");
+
+        outraPessoa = new Pessoa();
+        outraPessoa.setPrimeiroNome("Bueno");
+        outraPessoa.setSobreNome("Maruzam");
+        outraPessoa.setCursoDesejado("Python");
+        outraPessoa.setTelefoneContato("88888888");
+
+        int parada = 0;
+
+
+
+
+
     }
 }
