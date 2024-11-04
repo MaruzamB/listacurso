@@ -1,6 +1,7 @@
 package com.maruzamjunior.applistacurso.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += outraPessoa.getCursoDesejado();
         dadosOutraPessoa += " Telefone Contato: ";
         dadosOutraPessoa += outraPessoa.getTelefoneContato();
+
+        Log.i("PooAndroid",pessoa.toString());
+        Log.i("PooAndroid", outraPessoa.toString());
 
         int parada = 0;
 
