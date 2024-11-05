@@ -2,6 +2,8 @@ package com.maruzamjunior.applistacurso.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
     String dadosPessoa;
     String dadosOutraPessoa;
+
+    //criar os objetos edittext e buttons
+    EditText editPrimeiroNome;
+    EditText editSobrenome;
+    EditText editCursoDesejado;
+    EditText editTelefoneContato;
+
+    Button btnLimpar;
+    Button btnSalvar;
+    Button btnFinalizar;
 
 
     @Override
@@ -45,6 +57,30 @@ public class MainActivity extends AppCompatActivity {
         outraPessoa.setCursoDesejado("Python");
         outraPessoa.setTelefoneContato("88888888");
 
+        editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
+        editSobrenome = findViewById(R.id.editSobrenome);
+        editCursoDesejado = findViewById(R.id.editCursoDesejado);
+        editTelefoneContato = findViewById(R.id.editTelefoneContato);
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        //pegar os dados pessoa
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        editSobrenome.setText(pessoa.getSobreNome());
+        editCursoDesejado.setText(pessoa.getCursoDesejado());
+        editTelefoneContato.setText(pessoa.getTelefoneContato());
+
+       /*
+        //pegar os dados outraPessoa
+        editPrimeiroNome.setText(outraPessoa.getPrimeiroNome());
+        editSobrenome.setText(outraPessoa.getSobreNome());
+        editCursoDesejado.setText(outraPessoa.getCursoDesejado());
+        editTelefoneContato.setText(outraPessoa.getTelefoneContato());
+        */
+
+/*
+
         dadosPessoa = " Primeiro Nome: ";
         dadosPessoa += pessoa.getPrimeiroNome();
         dadosPessoa += " Sobrenome: ";
@@ -62,11 +98,12 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += outraPessoa.getCursoDesejado();
         dadosOutraPessoa += " Telefone Contato: ";
         dadosOutraPessoa += outraPessoa.getTelefoneContato();
+*/
 
         Log.i("PooAndroid",pessoa.toString());
         Log.i("PooAndroid", outraPessoa.toString());
 
-        int parada = 0;
+
 
 
 
