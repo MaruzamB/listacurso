@@ -1,5 +1,6 @@
 package com.maruzamjunior.applistacurso.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,9 +15,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.maruzamjunior.applistacurso.R;
+import com.maruzamjunior.applistacurso.controller.PessoaController;
 import com.maruzamjunior.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    PessoaController controller;
 
     Pessoa pessoa;
     Pessoa outraPessoa;
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        controller = new PessoaController();
+        controller.toString();
 
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Maruzam");
@@ -90,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 outraPessoa.setTelefoneContato(editTelefoneContato.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo: " + outraPessoa.toString(), Toast.LENGTH_LONG).show();
-
+                controller.salvar(pessoa);
             }
         });
 
