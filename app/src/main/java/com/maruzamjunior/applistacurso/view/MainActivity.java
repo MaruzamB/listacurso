@@ -20,6 +20,8 @@ import com.maruzamjunior.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences preferences;
+    public static final String NOME_PREFERENCES = "pref_listvip";
 
     PessoaController controller;
 
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
+        SharedPreferences.Editor listaVip = preferences.edit();
         controller = new PessoaController();
         controller.toString();
 
@@ -98,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
                 outraPessoa.setTelefoneContato(editTelefoneContato.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo: " + outraPessoa.toString(), Toast.LENGTH_LONG).show();
+
+                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
+                listaVip.putString("Sobrenome", pessoa.getSobreNome());
+                listaVip.putString("CursoDesejado", pessoa.getCursoDesejado());
+                listaVip.putString("TelefoneContato", pessoa.getTelefoneContato());
+
+                listaVip.apply();
+
                 controller.salvar(pessoa);
             }
         });
