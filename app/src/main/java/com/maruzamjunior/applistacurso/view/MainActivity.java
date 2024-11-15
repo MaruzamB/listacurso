@@ -20,12 +20,7 @@ import com.maruzamjunior.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences preferences;
-    public static final String NOME_PREFERENCES = "pref_listvip";
-    SharedPreferences.Editor listaVip;
-
     PessoaController controller;
-
     Pessoa pessoa;
 
     EditText editPrimeiroNome;
@@ -48,16 +43,11 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaVip = preferences.edit();
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
 
         pessoa = new Pessoa();
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", " "));
-        pessoa.setSobreNome(preferences.getString("Sobrenome", " "));
-        pessoa.setCursoDesejado(preferences.getString("CursoDesejado", " "));
-        pessoa.setTelefoneContato(preferences.getString("TelefoneContato", " "));
+        controller.buscar(pessoa);
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobrenome = findViewById(R.id.editSobrenome);
@@ -73,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
-
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 editCursoDesejado.setText(" ");
                 editTelefoneContato.setText(" ");
 
-                listaVip.clear();
-                listaVip.apply();
+                controller.limpar();
             }
         });
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
@@ -105,19 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, "Salvo: " + pessoa.toString(), Toast.LENGTH_LONG).show();
 
-                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
-                listaVip.putString("Sobrenome", pessoa.getSobreNome());
-                listaVip.putString("CursoDesejado", pessoa.getCursoDesejado());
-                listaVip.putString("TelefoneContato", pessoa.getTelefoneContato());
-
-                listaVip.apply();
-
                 controller.salvar(pessoa);
             }
         });
-
         Log.i("PooAndroid", pessoa.toString());
-
-
     }
 }
