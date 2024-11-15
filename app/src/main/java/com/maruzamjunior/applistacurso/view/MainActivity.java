@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     PessoaController controller;
     CursoController cursoController;
     Pessoa pessoa;
-    List<Curso> listaDeCursos;
+    List<String> listaDeCursos;
 
     EditText editPrimeiroNome;
     EditText editSobrenome;
