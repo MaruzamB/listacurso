@@ -15,13 +15,19 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.maruzamjunior.applistacurso.R;
+import com.maruzamjunior.applistacurso.controller.CursoController;
 import com.maruzamjunior.applistacurso.controller.PessoaController;
+import com.maruzamjunior.applistacurso.model.Curso;
 import com.maruzamjunior.applistacurso.model.Pessoa;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     PessoaController controller;
+    CursoController cursoController;
     Pessoa pessoa;
+    List<Curso> listaDeCursos;
 
     EditText editPrimeiroNome;
     EditText editSobrenome;
@@ -45,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new PessoaController(MainActivity.this);
         controller.toString();
+
+        cursoController = new CursoController();
+        listaDeCursos = cursoController.getListaCursos();
+
+
 
         pessoa = new Pessoa();
         controller.buscar(pessoa);
