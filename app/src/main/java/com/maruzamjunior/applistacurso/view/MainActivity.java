@@ -1,11 +1,12 @@
 package com.maruzamjunior.applistacurso.view;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -17,7 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.maruzamjunior.applistacurso.R;
 import com.maruzamjunior.applistacurso.controller.CursoController;
 import com.maruzamjunior.applistacurso.controller.PessoaController;
-import com.maruzamjunior.applistacurso.model.Curso;
 import com.maruzamjunior.applistacurso.model.Pessoa;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     PessoaController controller;
     CursoController cursoController;
     Pessoa pessoa;
-    List<String> listaDeCursos;
+    List<String> nomesCursos;
 
     EditText editPrimeiroNome;
     EditText editSobrenome;
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnLimpar;
     Button btnSalvar;
     Button btnFinalizar;
+
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         controller.toString();
 
         cursoController = new CursoController();
-        listaDeCursos = cursoController.getListaCursos();
+        nomesCursos = cursoController.dadosSpinner();
 
 
 
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         editCursoDesejado = findViewById(R.id.editCursoDesejado);
         editTelefoneContato = findViewById(R.id.editTelefoneContato);
 
+        spinner = findViewById(R.id.spinner);
+
         editPrimeiroNome.setText(pessoa.getPrimeiroNome());
         editSobrenome.setText(pessoa.getSobreNome());
         editCursoDesejado.setText(pessoa.getCursoDesejado());
@@ -73,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                cursoController.dadosSpinner());
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        spinner.setAdapter(adapter);
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
